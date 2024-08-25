@@ -1,0 +1,48 @@
+<div class="w-50 mx-auto my-5">
+    <form (ngSubmit)="handleRegister(registerForm)" [formGroup]="registerForm">
+        <h2 class="">Register Now</h2>
+        <p *ngIf="apiErrorMessage" class="alert alert-danger text-center ">{{apiErrorMessage}}</p>
+        <p *ngIf="apiErrorMsg" class="alert alert-danger text-center ">{{apiErrorMsg}}</p>
+        <label class="mt-2"for="name">Name</label>
+        <input class="form-control" formControlName="name" id="name" type="text">
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.dirty" class="text-danger">
+            <p *ngIf="registerForm.get('name')?.getError('required')" class="my-0">Name Is Required</p>
+            <p *ngIf="registerForm.get('name')?.getError('minlength')" class="my-0">minLength is 3</p>
+            <p *ngIf="registerForm.get('name')?.getError('maxlength')" class="my-0">maxlength is 20</p>
+        </div>
+
+        <label class="mt-2" for="email">Email</label>
+        <input class="form-control" formControlName="email" id="email" type="email">
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.dirty" class="text-danger">
+            <p *ngIf="registerForm.get('email')?.getError('required')" class="my-0">Email Is Required</p>
+            <p *ngIf="registerForm.get('email')?.getError('email')" class="my-0">Please enter a valid email</p>
+        </div>
+
+        <label class="mt-2" for="password">Password</label>
+        <input class="form-control" autocomplete="off" formControlName="password" id="password" type="password">
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.dirty" class="text-danger">
+            <p *ngIf="registerForm.get('password')?.getError('required')" class="my-0">Password Is Required</p>
+            <p *ngIf="registerForm.get('password')?.getError('pattern')" class="my-0">Password must start with uppercase followed by at least 5 characters</p>
+        </div>
+
+        <label class="mt-2" for="rePassword">Confirm password</label>
+        <input class="form-control" autocomplete="off" formControlName="rePassword" id="rePassword" type="password">
+        <div *ngIf="registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.dirty" class="text-danger">
+            <p *ngIf="registerForm.get('rePassword')?.getError('required')" class="my-0">Password Is Required</p>
+            <p *ngIf="registerForm.get('rePassword')?.getError('pattern')" class="my-0">Password must start with uppercase
+                followed by at least 5 characters</p>
+        </div>
+
+        <label class="mt-2" for="phone">Phone</label>
+        <input class="form-control" formControlName="phone" id="phone" type="tel">
+        <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.dirty" class="text-danger">
+            <p *ngIf="registerForm.get('phone')?.getError('required')" class="my-0">Phone Is Required</p>
+            <p *ngIf="registerForm.get('phone')?.getError('pattern')" class="my-0">Phone must be Egyption number</p>
+        </div>
+
+        <button [disabled]="registerForm.invalid" class="my-3 btn bg-main text-light">
+            <span *ngIf="!isLoading">Register</span>
+            <span *ngIf="isLoading" class="fa-solid fa-spinner fa-spin"></span>
+        </button>
+    </form>
+</div>

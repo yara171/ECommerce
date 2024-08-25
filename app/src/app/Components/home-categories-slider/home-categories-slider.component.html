@@ -1,0 +1,25 @@
+<div class="row">
+    <h3 class="fw-bold my-3"> Shop Popular Categories</h3>
+
+    <owl-carousel-o [options]="customOptions">
+
+        <ng-container *ngFor="let category of allCategories">
+          <ng-template carouselSlide>
+            <img height="200" width="100" class="object-fit-cover" [src]="category.image" [alt]="category.name">
+            <p class="font-sm text-secondary mt-2">{{category.name}}</p>
+
+          </ng-template>
+        </ng-container>
+    
+      </owl-carousel-o>
+
+    <!-- <div *ngFor="let category of allCategories" class="col-md-2 ">
+        <div class="py-5">
+            <div class="w-100 ratio ratio-1x1" >
+                <img class="w-100 ratio ratio-1x1" [src]="category.image" alt="">
+            </div>
+            
+        </div>
+    </div> -->
+
+</div>

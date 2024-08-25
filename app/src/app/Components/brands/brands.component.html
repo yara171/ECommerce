@@ -1,0 +1,12 @@
+<input type="search" class="form-control w-75 mx-auto my-5 py-2" placeholder="Search">
+
+<div class="row justify-content-between align-content-center">
+    <a [routerLink]="['/products/brand', brand._id]" *ngFor="let brand of allBrands" class="col-md-4 g-5">
+        <div class="border shadow-sm p-3 text-bg-light">
+            <img height="300" class="object-fit-cover w-100 " [src]="brand.image" [alt]="brand.name">
+            <p class="fs-4 text-center fw-bold text-main mt-3">{{brand.name}}</p>
+        </div>
+    </a>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>

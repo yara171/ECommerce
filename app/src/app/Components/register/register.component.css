@@ -1,0 +1,14 @@
+input.ng-dirty.ng-invalid
+{
+    border: 2px solid red;
+}
+
+input.ng-valid.ng-dirty
+{
+    border: 2px solid green
+}
+
+input.form-control
+{
+    box-shadow: none !important;
+}

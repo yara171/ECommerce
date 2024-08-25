@@ -1,0 +1,46 @@
+<div class="bg-light p-4 border my-5 shadow-sm rounded">
+    <h4 class="fw-bold">Shopping Cart</h4>
+    <div (click)="handleclearUserCart()" class="fw-bold font-sm p-2 pb-2 chover">
+        <a class="text-muted">Clear all items</a>
+        <p *ngIf="isEmptys" class="pt-3 m-0">Your Cart Is Empty</p>
+    </div>
+    <div *ngIf="isEmpty">
+        <div *ngFor="let cartItem of cartDetails?.products" class="row border-bottom p-2 pb-2 align-items-center">
+            <div class="col-md-1">
+                <div class="my-2">
+                    <img class="w-100 img-thumbnail " [src]="cartItem.product.imageCover"
+                        [alt]="cartItem.product.title">
+                </div>
+            </div>
+            <div class="col-md-11">
+                <div class="d-flex justify-content-between">
+                    <div class="">
+                        <p class="mb-0 fw-bold">{{cartItem.product.title}}</p>
+                        <p class="mb-0 text-muted font-sm pt-1 fw-bold">Price: <span
+                                class="text-main fw-bold">{{cartItem.price}}</span></p>
+                        <button (click)="handleremoveCartItem(cartItem.product._id)" class="mt-2 border-0">
+                            <i class="fa-regular fa-trash-can me-2 text-main"></i>
+                            <span class="text-danger font-sm">Remove</span>
+                        </button>
+                    </div>
+                    <div>
+                        <button (click)="updatQuantity(cartItem.product._id, cartItem.count +1)"
+                            class="border-main rounded">+</button>
+                        <span class="mx-2 fw-bold">{{cartItem.count}}</span>
+                        <button (click)="updatQuantity(cartItem.product._id, cartItem.count -1)"
+                            class="border-main rounded">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-3 fw-bold text-dark ">
+        <div *ngIf="isEmpty">
+            <p class="text-main m-0"><Span class="font-sm text-muted fw-bold">Total Price:</Span> EGP
+                {{cartDetails?.totalCartPrice}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>
